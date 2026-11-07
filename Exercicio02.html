@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2</title>
+</head>
+<body>
+    <h1 id="titulo">Notícias da Região dos Lagos</h1>
+    <p id="paragrafo">Aqui você fica por dentro do que está acontecendo na região!</p>
+    <button id="botao">Clique aqui</button>
+
+    <script>
+        const conteudoTitulo = document.getElementById("titulo");
+        let tituloAlternativo = conteudoTitulo.textContent;
+
+        const conteudoParagrafo = document.getElementById("paragrafo");
+        let paragrafoAlternativo = document.textContent;
+
+        const nomeBotao = document.getElementById("botao");
+        let nomeBtnAlternativo = document.textContent;
+
+        const botao = document.querySelector('#botao');
+
+        botao.addEventListener("click", function(){
+            tituloAlternativo = "Você mudou o título da página!";
+            conteudoTitulo.textContent = tituloAlternativo;
+
+            paragrafoAlternativo = "Você modificou o parágrafo";
+            conteudoParagrafo.textContent = paragrafoAlternativo;
+
+            nomeBtnAlternativo = "Você mudou o nome do botão";
+            nomeBotao.textContent = nomeBtnAlternativo;
+
+
+        })
+    </script>
+</body>
+</html>
