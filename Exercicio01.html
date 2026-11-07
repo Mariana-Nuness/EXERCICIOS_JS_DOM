@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercício 1</title>
+</head>
+
+<body>
+  <h1>Contador</h1>
+  <h2 id="numero">0</h2>
+  <button id="incrementar">Incrementar</button>
+  <button id="decrementar">Decrementar</button>
+  <button id="zerar">Zerar</button>
+
+  <script>
+    const elementoNumero = document.getElementById("numero");
+    let contador = Number(elementoNumero.textContent);
+
+    const btnIncremento = document.querySelector('#incrementar');
+    const btnDecremento = document.querySelector('#decrementar');
+    const btnZerar = document.querySelector('#zerar');
+
+    btnIncremento.addEventListener("click", function () {
+      contador = contador + 1;
+      elementoNumero.textContent = contador;
+    })
+
+    btnDecremento.addEventListener("click", function () {
+      contador = contador - 1;
+      elementoNumero.textContent = contador;
+    })
+
+    btnZerar.addEventListener("click", function () {
+      contador = 0;
+      elementoNumero.textContent = contador;
+    })
+  </script>
+
+</body>
+
+</html>
