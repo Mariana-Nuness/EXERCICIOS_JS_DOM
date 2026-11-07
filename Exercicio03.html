@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 3</title>
+</head>
+<body>
+    <h1>Formulário</h1>
+    <p>Digite sua idade aqui:</p>
+    <input type="number" id="campo">
+    <button id="botao">Verificar</button>
+    <p id="output"></p>
+    
+    <script>
+        const btn = document.getElementById("botao");
+        const input = document.getElementById("campo");
+        const saida = document.getElementById("output");
+        let resulVerificar = saida.textContent;
+
+
+        btn.addEventListener("click", function(){
+            let valorDigitado = input.value;
+
+            if (valorDigitado >= 18){
+                resulVerificar = "Você é maior de idade!";
+                saida.textContent = resulVerificar;
+
+            } else if (valorDigitado === ""){
+                resulVerificar = "NENHUM VALOR DIGITADO. POR FAVOR, DIGITE UM VALOR NO CAMPO ACIMA!";
+                saida.textContent = resulVerificar;
+            }else if (valorDigitado < 0){
+                resulVerificar = "É IMPOSSÍVEL QUE A IDADE SEJA UM NÚMERO NEGATIVO. POR FAVOR, DIGITE UM VALOR VÁLIDO.";
+                saida.textContent = resulVerificar;
+
+
+            }else {
+                resulVerificar = "Você é menor de idade";
+                saida.textContent = resulVerificar;
+            }
+
+        })
+    </script>
+    
+</body>
+</html>
