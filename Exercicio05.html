@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 5 - Lista de Compras</title>
+</head>
+
+<body>
+    <h1>Lista de Compras</h1>
+    <p>Digite o nome do produto: </p>
+    <input type="text" id="texto">
+    <button id="cadastrar">Cadastrar</button>
+
+    <ul id="lista"></ul>
+
+    <script>
+        let produto = document.getElementById("texto");
+        let botao = document.getElementById("cadastrar");
+        let lista = document.getElementById("lista")
+
+
+        botao.addEventListener("click", function () {
+            let produtoNome = produto.value.trim();
+
+            if (produtoNome === "") {
+                alert("O CAMPO ESTÁ VAZIO. DIGITE O NOME DE UM PRODUTO!");
+            } else {
+                let item = document.createElement("li");
+                item.textContent = produtoNome;
+
+                let botaoComprado = document.createElement("button");
+                botaoComprado.textContent = "Comprado";
+
+                let botaoExcluir = document.createElement("button");
+                botaoExcluir.textContent = "Excluir";
+                
+
+                botaoComprado.addEventListener("click", function(){
+                    if (botaoComprado.style.backgroundColor === "lightgreen"){
+                        botaoComprado.style.backgroundColor = "";
+                    }else{
+                        botaoComprado.style.backgroundColor = "lightgreen";
+                    }
+                });
+                botaoExcluir.addEventListener("click", function(){
+                    item.remove();
+                })
+                item.appendChild(botaoComprado);
+                item.appendChild(botaoExcluir);
+                lista.appendChild(item);
+
+                produto.value = "";
+                
+              
+                
+
+            }
+        })
+    </script>
+
+</body>
+
+</html>
