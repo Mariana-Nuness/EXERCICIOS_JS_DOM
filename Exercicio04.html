@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercício 4 - Lista de Nomes</title>
 </head>
+
 <body>
     <h1>Lista de Nomes</h1>
     <input type="text" id="input">
@@ -14,16 +16,23 @@
     <script>
         const campo = document.getElementById("input");
         const btnAdicionar = document.getElementById("botao");
+        const listaUl = document.getElementById("lista");
 
         let lista = [];
 
-        btnAdicionar.addEventListener("click", function(){
-            let nomeDigitado = campo.value;
+        btnAdicionar.addEventListener("click", function () {
+            let nome = campo.value.trim();
 
-
+            if(nome === ""){
+                alert("DIGITE ALGO, O CAMPO ESTÁ VAZIO!")
+            }else{
+            lista.push(nome);
             
-        })
+            listaUl.innerHTML = listaUl.innerHTML + "<li>" + nome + "</li>";
+            campo.value = ""; 
 
+            }
+        })
     </script>
 
 
@@ -31,4 +40,5 @@
 
 
 </body>
+
 </html>
