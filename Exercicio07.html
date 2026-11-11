@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 7 - Controle de notas</title>
+</head>
+
+<body>
+    <h1>Controle de notas</h1>
+
+    <label for="nome">Nome do aluno:</label>
+    <input type="text" id="nome" placeholder="Digite o nome">
+    <br><br>
+
+    <label for="nota">Nota:</label>
+    <input type="number" id="nota" placeholder="Digite a nota">
+    <br><br>
+
+    <button id="cadastrar">Cadastrar</button>
+
+    <ul id="lista"></ul>
+
+    <p id="media">Média: 0</p>
+
+    <script>
+        const nome = document.getElementById("nome");
+        const nota = document.getElementById("nota");
+        const cadastrar = document.getElementById("cadastrar");
+        const lista = document.getElementById("lista");
+        const media = document.getElementById("media");
+
+        let notas = [];
+
+        function calcularMedia() {
+            let soma = 0;
+
+            for (let i = 0; i < notas.length; i++) {
+                soma += notas[i];
+            }
+
+            let resultado = notas.length > 0 ? soma / notas.length : 0;
+
+            media.textContent = "Média: " + resultado.toFixed(2);
+        }
+
+        cadastrar.addEventListener("click", function () {
+            let nomeAluno = nome.value.trim();
+            let notaAluno = Number(nota.value);
+
+            if (nomeAluno === "" || nota.value === "" || notaAluno < 0 || notaAluno > 10) {
+                alert("Preencha os campos corretamente! A nota deve estar entre 0 e 10.");
+            } else {
+                let item = document.createElement("li");
+
+                let situacao = notaAluno >= 6 ? "Aprovado" : "Reprovado";
+
+                item.textContent = nomeAluno + " - Nota: " + notaAluno + " - " + situacao + " ";
+
+                let btnExcluir = document.createElement("button");
+                btnExcluir.textContent = "Excluir";
+
+                btnExcluir.addEventListener("click", function () {
+                    let indice = notas.indexOf(notaAluno);
+                    notas.splice(indice, 1);
+                    item.remove();
+                    calcularMedia();
+                });
+
+                item.appendChild(btnExcluir);
+                lista.appendChild(item);
+
+                notas.push(notaAluno);
+
+                nome.value = "";
+                nota.value = "";
+
+                calcularMedia();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
