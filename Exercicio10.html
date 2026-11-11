@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 10 - Gerenciador de tarefas</title>
+</head>
+
+<body>
+    <h1>Gerenciador de tarefas</h1>
+
+    <label for="descricao">Descrição da tarefa:</label>
+    <input type="text" id="descricao" placeholder="Digite a tarefa">
+    <br><br>
+
+    <button id="adicionar">Adicionar tarefa</button>
+
+    <ul id="lista"></ul>
+
+    <p id="quantidade">Total de tarefas: 0</p>
+    <p id="concluidas">Tarefas concluídas: 0</p>
+    <p id="pendentes">Tarefas pendentes: 0</p>
+
+    <script>
+        const descricao = document.getElementById("descricao");
+        const adicionar = document.getElementById("adicionar");
+        const lista = document.getElementById("lista");
+
+        const quantidade = document.getElementById("quantidade");
+        const concluidas = document.getElementById("concluidas");
+        const pendentes = document.getElementById("pendentes");
+
+        let tarefas = [];
+
+        function atualizarContadores() {
+            let totalConcluidas = 0;
+            let totalPendentes = 0;
+
+            for (let i = 0; i < tarefas.length; i++) {
+                if (tarefas[i].concluida === true) {
+                    totalConcluidas++;
+                } else {
+                    totalPendentes++;
+                }
+            }
+
+            quantidade.textContent = "Total de tarefas: " + tarefas.length;
+            concluidas.textContent = "Tarefas concluídas: " + totalConcluidas;
+            pendentes.textContent = "Tarefas pendentes: " + totalPendentes;
+        }
+
+        adicionar.addEventListener("click", function () {
+            let descricaoTarefa = descricao.value.trim();
+
+            if (descricaoTarefa === "") {
+                alert("Digite uma tarefa!");
+            } else {
+                let tarefa = {
+                    descricao: descricaoTarefa,
+                    concluida: false
+                };
+
+                tarefas.push(tarefa);
+
+                let item = document.createElement("li");
+
+                item.textContent = tarefa.descricao + " - Pendente ";
+
+                let btnConcluir = document.createElement("button");
+                btnConcluir.textContent = "Concluir";
+
+                let btnExcluir = document.createElement("button");
+                btnExcluir.textContent = "Excluir";
+
+                btnConcluir.addEventListener("click", function () {
+                    tarefa.concluida = true;
+                    item.firstChild.textContent = tarefa.descricao + " - Concluída ";
+                    atualizarContadores();
+                    btnConcluir.disabled = true;
+                });
+
+                btnExcluir.addEventListener("click", function () {
+                    let indice = tarefas.indexOf(tarefa);
+                    tarefas.splice(indice, 1);
+                    item.remove();
+                    atualizarContadores();
+                });
+
+                item.appendChild(btnConcluir);
+                item.appendChild(btnExcluir);
+
+                lista.appendChild(item);
+
+                descricao.value = "";
+
+                atualizarContadores();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
