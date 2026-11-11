@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 9 - Controle de estoque</title>
+</head>
+
+<body>
+    <h1>Controle de estoque</h1>
+
+    <label for="nome">Nome do produto:</label>
+    <input type="text" id="nome" placeholder="Digite o produto">
+    <br><br>
+
+    <label for="quantidade">Quantidade:</label>
+    <input type="number" id="quantidade" placeholder="Digite a quantidade">
+    <br><br>
+
+    <label for="preco">Preço:</label>
+    <input type="number" id="preco" placeholder="Digite o preço">
+    <br><br>
+
+    <button id="cadastrar">Cadastrar</button>
+
+    <ul id="lista"></ul>
+
+    <p id="total">Valor total do estoque: R$ 0,00</p>
+
+    <script>
+        const nome = document.getElementById("nome");
+        const quantidade = document.getElementById("quantidade");
+        const preco = document.getElementById("preco");
+        const cadastrar = document.getElementById("cadastrar");
+        const lista = document.getElementById("lista");
+        const total = document.getElementById("total");
+
+        let produtos = [];
+
+        function calcularTotal() {
+            let soma = 0;
+
+            for (let i = 0; i < produtos.length; i++) {
+                soma += produtos[i].quantidade * produtos[i].preco;
+            }
+
+            total.textContent = "Valor total do estoque: R$ " + soma.toFixed(2);
+        }
+
+        cadastrar.addEventListener("click", function () {
+            let nomeProduto = nome.value.trim();
+            let quantidadeProduto = Number(quantidade.value);
+            let precoProduto = Number(preco.value);
+
+            if (nomeProduto === "" || quantidade.value === "" || preco.value === "" || quantidadeProduto <= 0 || precoProduto < 0) {
+                alert("Preencha os campos corretamente!");
+            } else {
+                let produto = {
+                    nome: nomeProduto,
+                    quantidade: quantidadeProduto,
+                    preco: precoProduto
+                };
+
+                produtos.push(produto);
+
+                let item = document.createElement("li");
+
+                item.textContent = "Produto: " + produto.nome + " | Quantidade: " + produto.quantidade + " | Preço: R$ " + produto.preco.toFixed(2) + " ";
+
+                let btnExcluir = document.createElement("button");
+                btnExcluir.textContent = "Excluir";
+
+                btnExcluir.addEventListener("click", function () {
+                    let indice = produtos.indexOf(produto);
+                    produtos.splice(indice, 1);
+                    item.remove();
+                    calcularTotal();
+                });
+
+                item.appendChild(btnExcluir);
+                lista.appendChild(item);
+
+                nome.value = "";
+                quantidade.value = "";
+                preco.value = "";
+
+                calcularTotal();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
