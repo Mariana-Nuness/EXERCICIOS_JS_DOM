@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 8 - Galeria de imagens</title>
+</head>
+
+<body>
+    <h1>Galeria de imagens</h1>
+
+    <button id="imagem1">Imagem 1</button>
+    <button id="imagem2">Imagem 2</button>
+    <button id="imagem3">Imagem 3</button>
+
+    <br><br>
+
+    <img id="imagemGrande" src="" width="400">
+
+    <p id="nomeImagem"></p>
+
+    <script>
+        const imagemGrande = document.getElementById("imagemGrande");
+        const nomeImagem = document.getElementById("nomeImagem");
+
+        const imagem1 = document.getElementById("imagem1");
+        const imagem2 = document.getElementById("imagem2");
+        const imagem3 = document.getElementById("imagem3");
+
+        imagem1.addEventListener("click", function () {
+            imagemGrande.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDRxwZakCR7_5Q7zrHqtMMcHJapG6a-ZBOIJYjA-rRQQ&s=10";
+            nomeImagem.textContent = "Imagem 1";
+        });
+
+        imagem2.addEventListener("click", function () {
+            imagemGrande.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3sRprUB0ZkZxJrdfP-6VvxHNmYfcQj614SEZM_xjLVw&s=10";
+            nomeImagem.textContent = "Imagem 2";
+        });
+
+        imagem3.addEventListener("click", function () {
+            imagemGrande.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2tvdBwkVyGFl4Y-nz87j1rqeSSJ4nu40hO7WM6P3DkQ&s=10";
+            nomeImagem.textContent = "Imagem 3";
+        });
+    </script>
+
+</body>
+
+</html>
